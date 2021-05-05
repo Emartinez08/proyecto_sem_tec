@@ -29,7 +29,7 @@ if __name__ == '__main__':
             break
 
         
-        cv2.imshow("Output", img)
+        cv2.imshow("Output", img_gray)
 
         k = cv2.waitKey(10)
         if k==27:
