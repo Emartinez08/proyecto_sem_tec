@@ -5,10 +5,8 @@ Este proyecto se desarrolla durante la semana tec "El arte de programar" como un
 Es necesario instalar:
 - Python3
 - Modulo pip
-librerias:
 - OpenCV
 - freegames
 
 #Aplicaciones
-camera_python.py: Abre la camara del dispositivo 
-
+camera_python.py: Abre la camara del dispositivo, detecta un rostro y agrega una imagen llamada "casco".

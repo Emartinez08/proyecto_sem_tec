@@ -48,8 +48,10 @@ if __name__ == '__main__':
         if img is None:
             break
 
+
         #filtro gris
-        #img_gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        img_gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
         cv2.imshow("Output", img)
 
         k = cv2.waitKey(10)
