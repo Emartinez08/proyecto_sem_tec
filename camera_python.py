@@ -27,25 +27,28 @@ if __name__ == '__main__':
         
         #BGR image feed from camera
         success,img = cap.read()
+        #BGR to grayscale
+        img_gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        #cv2.Gaussian...
         # deteccion de rostro// usa el clasificador para detectar rostros
-        faces = faceClassif.detectMultiScale(img, 1.3,5)  # si aumentan mucho los nueros detecata pocos rostro y viceversa
+        faces = faceClassif.detectMultiScale(img_gray, 1.3,5)  # si aumentan mucho los nueros detecata pocos rostro y viceversa
         #Agregar un rectangulo a la imagen
         for (x,y,w,h) in faces:
-            cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) # agrega un rectangulo a las caras detectadas
+            cv2.rectangle(img_gray,(x,y),(x+w,y+h),(0,255,0),2) # agrega un rectangulo a las caras detectadas
 
             # redimencionar imagen
             imagen_adaptada = imutils.resize(casco, width=w)
             filas_casco = imagen_adaptada.shape[0]
             col_casco = w
             if y - filas_casco >= 0:
-                img[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
+                img_gray[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
 
         if not success:
             break
         if img is None:
             break
 
-        
+        cv2.imshow("Imagen en gris", img_gray)
         cv2.imshow("Output", img)
 
         k = cv2.waitKey(10)
