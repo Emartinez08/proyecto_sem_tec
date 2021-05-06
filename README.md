@@ -9,5 +9,4 @@ Es necesario instalar:
 - freegames
 
 #Aplicaciones
-camera_python.py: Abre la camara del dispositivo 
-
+camera_python.py: Abre la camara del dispositivo, detecta un rostro y agrega una imagen llamada "casco".
