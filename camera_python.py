@@ -41,7 +41,7 @@ if __name__ == '__main__':
             filas_casco = imagen_adaptada.shape[0]
             col_casco = w
             if y - filas_casco >= 0:
-                img_gray[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
+                img[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
 
         if not success:
             break
