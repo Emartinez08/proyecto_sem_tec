@@ -1,6 +1,7 @@
 import cv2
 import time
 import argparse
+import imutils
 
 
 if __name__ == '__main__':
@@ -17,6 +18,9 @@ if __name__ == '__main__':
     # clasificador// manda a llamar uno de los clasificadores predefinidos de openCv
     faceClassif = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
+    # casco incrustable
+    casco = cv2.imread("casco.png", cv2.IMREAD_UNCHANGED)
+
 
     cap = cv2.VideoCapture(args["cameraSource"]) #0 local o primary camera
     while cap.isOpened():
@@ -28,6 +32,13 @@ if __name__ == '__main__':
         #Agregar un rectangulo a la imagen
         for (x,y,w,h) in faces:
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) # agrega un rectangulo a las caras detectadas
+
+            # redimencionar imagen
+            imagen_adaptada = imutils.resize(casco, width=w)
+            filas_casco = imagen_adaptada.shape[0]
+            col_casco = w
+            if y - filas_casco >= 0:
+                img[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
 
         if not success:
             break
