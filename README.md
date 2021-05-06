@@ -5,7 +5,6 @@ Este proyecto se desarrolla durante la semana tec "El arte de programar" como un
 Es necesario instalar:
 - Python3
 - Modulo pip
-librerias:
 - OpenCV
 - freegames
 
