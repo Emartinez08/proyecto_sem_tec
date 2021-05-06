@@ -37,15 +37,19 @@ if __name__ == '__main__':
             imagen_adaptada = imutils.resize(casco, width=w)
             filas_casco = imagen_adaptada.shape[0]
             col_casco = w
-            if y - filas_casco >= 0:
-                img[y - filas_casco:y, x:x + w] = imagen_adaptada[:, :, 0:3]
+
+            #ajustar a la frente, disminuye una porcion de la imagen para ponerlo sobre la frente
+            porcion = filas_casco // 4
+            if y - filas_casco + porcion >= 0:
+                img[y - filas_casco + porcion:y + porcion, x:x + w] = imagen_adaptada[:, :, 0:3]
 
         if not success:
             break
         if img is None:
             break
 
-        
+        #filtro gris
+        #img_gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
         cv2.imshow("Output", img)
 
         k = cv2.waitKey(10)
