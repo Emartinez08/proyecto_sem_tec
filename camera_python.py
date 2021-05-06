@@ -19,7 +19,7 @@ while cap.isOpened():
     faces = faceClassif.detectMultiScale(img, 1.3,5)  # si aumentan mucho los nueros detecata pocos rostro y viceversa
     #Agregar un rectangulo a la imagen
     for (x,y,w,h) in faces:
-        cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) # agrega un rectangulo a las caras detectadas
+        cv2.rectangle(img,(x,y),(x+w,y+h),(245,232,50),4) # agrega un rectangulo a las caras detectadas
 
         # redimencionar imagen
         imagen_adaptada = imutils.resize(imagen, width=w)
