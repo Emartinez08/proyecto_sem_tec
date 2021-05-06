@@ -14,22 +14,28 @@ if __name__ == '__main__':
     
     args = vars(parser.parse_args())
 
+    # clasificador// manda a llamar uno de los clasificadores predefinidos de openCv
+    faceClassif = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
 
     cap = cv2.VideoCapture(args["cameraSource"]) #0 local o primary camera
     while cap.isOpened():
         
         #BGR image feed from camera
         success,img = cap.read()
-        #BGR to grayscale
-        img_gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-        #cv2.Gaussian...
+        # deteccion de rostro// usa el clasificador para detectar rostros
+        faces = faceClassif.detectMultiScale(img, 1.3,5)  # si aumentan mucho los nueros detecata pocos rostro y viceversa
+        #Agregar un rectangulo a la imagen
+        for (x,y,w,h) in faces:
+            cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) # agrega un rectangulo a las caras detectadas
+
         if not success:
             break
         if img is None:
             break
 
         
-        cv2.imshow("Output", img_gray)
+        cv2.imshow("Output", img)
 
         k = cv2.waitKey(10)
         if k==27:
