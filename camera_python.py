@@ -22,7 +22,9 @@ if __name__ == '__main__':
     casco = cv2.imread("casco.png", cv2.IMREAD_UNCHANGED)
 
 
+
     cap = cv2.VideoCapture(args["cameraSource"]) #0 local o primary camera
+    sentimiento = int(input("(1)¿¡Arriba México!? | (2)no "))
     while cap.isOpened():
         
         #BGR image feed from camera
@@ -43,6 +45,7 @@ if __name__ == '__main__':
             if y - filas_casco + porcion >= 0:
                 img[y - filas_casco + porcion:y + porcion, x:x + w] = imagen_adaptada[:, :, 0:3]
 
+
         if not success:
             break
         if img is None:
@@ -52,7 +55,11 @@ if __name__ == '__main__':
         #filtro gris
         img_gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow("Output", img)
+
+        if sentimiento==1:
+            cv2.imshow("Output", img)
+        else:
+            cv2.imshow("Output", img_gris)
 
         k = cv2.waitKey(10)
         if k==27:
