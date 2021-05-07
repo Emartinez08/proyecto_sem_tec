@@ -14,7 +14,7 @@ Es necesario instalar:
 - Python3
 - Modulo pip
 - OpenCV
-- freegames
+- imutils
 
 #Aplicaciones
 
